@@ -3,4 +3,9 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="noClick">#817777</color>
+    <color name="clicked">#03A9F4</color>
+    <color name="noClickNumber">#00BCD4</color>
+    <color name="color1">#DACF70</color>
+    <color name="color2">#D3767C</color>
 </resources>
