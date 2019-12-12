@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+/**
+ * The Entry of program.
+ */
 public class EntryActivity extends AppCompatActivity {
 
     private int minCount;
@@ -50,6 +53,7 @@ public class EntryActivity extends AppCompatActivity {
         int num = (int) (Math.random() * delta) + minCount;
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("num", num);
+        // start game
         startActivity(intent);
     }
 }

@@ -3,6 +3,11 @@ package com.example.littlecsd.sudoku.solve;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The main solver of sudoku
+ * It works well in almost all cases
+ * Using Dancing Links X algorithm to solve
+ */
 public class DLX {
 
     private DLXNode head = new DLXNode(-1, -1);

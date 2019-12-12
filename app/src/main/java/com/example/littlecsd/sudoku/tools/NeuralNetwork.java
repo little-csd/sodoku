@@ -1,4 +1,4 @@
-package com.example.littlecsd.sudoku.process;
+package com.example.littlecsd.sudoku.tools;
 
 import java.util.Arrays;
 

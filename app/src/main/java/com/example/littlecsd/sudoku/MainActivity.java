@@ -5,25 +5,28 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.littlecsd.sudoku.process.Generator;
 import com.example.littlecsd.sudoku.solve.DLX;
+import com.example.littlecsd.sudoku.tools.Generator;
 import com.example.littlecsd.sudoku.view.Callback;
 import com.example.littlecsd.sudoku.view.Divider;
 import com.example.littlecsd.sudoku.view.GameAdapter;
 import com.example.littlecsd.sudoku.view.NumberAdapter;
 import com.example.littlecsd.sudoku.view.Point;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Main view of sudoku
+ */
 public class MainActivity extends AppCompatActivity implements Callback {
 
     private static final String TAG = "MainActivity";
@@ -97,13 +100,28 @@ public class MainActivity extends AppCompatActivity implements Callback {
     @Override
     public void onClick(int number) {
         gameAdapter.click(number);
-        print(gameAdapter.getMap());
+        if (gameAdapter.isFull()) {
+            showWin();
+        }
+//        print(gameAdapter.getMap());
     }
 
     private void print(int[][] map) {
         for (int i = 0; i < map.length; i++) {
             Log.i(TAG, Arrays.toString(map[i]));
         }
+    }
+
+    private void showWin() {
+        timer.cancel();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog alertDialog = builder.setTitle("Congratulations!")
+                .setMessage("You Win!\n" + "You time is "
+                        + timeToString((System.currentTimeMillis() - startTime) / 1000))
+                .setPositiveButton("OK", (dialog, which) -> finish())
+                .setCancelable(false)
+                .create();
+        alertDialog.show();
     }
 
     @Override

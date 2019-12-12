@@ -16,6 +16,11 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * The adapter and controller of sudoku
+ * contains all info of this game
+ * provide collision checker, highlight function and so on.
+ */
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
 
     private static final String TAG = "GameAdapter";
@@ -27,6 +32,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
     private int[] row = new int[9];
     private int[] col = new int[9];
     private int[] block = new int[9];
+    private int curNum = 0;
     private boolean canInput = true;
     private Resources resources;
 
@@ -98,11 +104,17 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
     }
 
     public void setMap(int[][] map) {
+        curNum = 0;
         this.map = map;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 int pos = i * 9 + j;
-                canChange[pos] = map[i][j] <= 0;
+                if (map[i][j] > 0) {
+                    canChange[pos] = false;
+                    curNum++;
+                } else {
+                    canChange[pos] = true;
+                }
                 int t = i / 3 * 3 + j / 3;
                 int xx = 1 << (map[i][j] - 1);
                 row[i] |= xx;
@@ -128,6 +140,8 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
             row[x] ^= yy;
             col[y] ^= yy;
             block[pos] ^= yy;
+        } else {
+            curNum++;
         }
         row[x] |= xx;
         col[y] |= xx;
@@ -148,6 +162,10 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
         } else {
             return R.color.color2;
         }
+    }
+
+    public boolean isFull() {
+        return curNum == 81;
     }
 
     class GameHolder extends RecyclerView.ViewHolder {

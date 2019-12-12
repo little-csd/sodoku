@@ -1,5 +1,10 @@
 package com.example.littlecsd.sudoku.solve;
 
+/**
+ * The original solver of sudoku
+ * Use state compression dfs to solve
+ * It seems that sometimes this function may not work well
+ */
 public class Solver {
 
     private static final int MAXN = 511;

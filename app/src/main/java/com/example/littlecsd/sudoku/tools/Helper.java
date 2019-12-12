@@ -1,5 +1,9 @@
-package com.example.littlecsd.sudoku.process;
+package com.example.littlecsd.sudoku.tools;
 
+/**
+ * Helper function used for neural network.
+ * Including matrix multiply, matrix transpose, etc.
+ */
 public class Helper {
 
     public static double[][] MatrixMulMatrix(double[][] matrix1, double[][] matrix2) {

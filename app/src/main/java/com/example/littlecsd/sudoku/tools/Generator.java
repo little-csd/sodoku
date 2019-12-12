@@ -1,10 +1,14 @@
-package com.example.littlecsd.sudoku.process;
+package com.example.littlecsd.sudoku.tools;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The class that generate generate sudoku arrays (without collision
+ * but may have no solution).
+ */
 public class Generator {
 
     private static final int MAXN = 511;
